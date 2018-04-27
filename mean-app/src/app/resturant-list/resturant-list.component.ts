@@ -1,28 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { Resturant } from '../resturant';
+import { ResturantService } from '../resturant-list/resturant.service';
 
 @Component({
   selector: 'app-resturant-list',
   template: `
   <ul>
-  <li *ngFor="let person of people">
+  <li *ngFor="let resultArray of people">
    {{person.name}}
   </li>
 </ul>
-
-  `,
+`,
   styleUrls: ['./resturant-list.component.css']
 })
-export class ResturantListComponent implements OnInit {
+export class ResturantListComponent implements OnInit  {
 
-  people: Resturant[] = [
-    {name: 'Luke Skywalker'},
-    {name: 'Darth Vader'},
-    {name: 'Han Solo'},
-  ];
+  private peopleService : ResturantService ;
+  people: Resturant[] = [ ]
+    
+  constructor( peopleService: ResturantService) {
+    }
 
-  constructor(){}
-  ngOnInit(){}
+    getPosts(): void {
+      this.peopleService.getAll()
+          .subscribe(
+              resultArray => this.people = resultArray,
+              error => console.log("Error :: " + error)
+          )
+  }
+
+
+  ngOnInit() { 
+}
+ 
 
 
 }

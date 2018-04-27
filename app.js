@@ -4,6 +4,7 @@ var zomato = require('zomato');
 var fs = require('fs');
  
 var express = require('express');
+var cors = require('cors');
 
 const uri = "mongodb+srv://abhi:abhi1610@cluster123-2yy3u.mongodb.net/test"
 
@@ -61,26 +62,28 @@ var obj = JSON.parse(fs.readFileSync('sample.txt'));
 
 console.log(obj.location.title) ;
 
-//console.log(obj.nearby_restaurants);
+console.log(obj.nearby_restaurants);
 
 var rest = obj.nearby_restaurants
+let eventsres = [];
 
 for (var i = 0; i < rest.length; ++i) {
 
 
 
     console.log("Emp ID: "+rest[i].restaurant.name);
-    
+    eventsres.push(rest[i].restaurant.name)
 //console.log(rest[i].restaurant);
   }
 
-
+  
   var app = express();
+ app.use(cors());
 
   app.get('/resturants', function (req, res) {
     
 //console.log("Emp ID: "+rest[i].restaurant.name);
-        res.send(rest);
+        res.send(eventsres)
         
     //console.log(rest[i].restaurant);
       
