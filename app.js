@@ -1,12 +1,13 @@
 var mongoose = require('mongoose');
 
 var zomato = require('zomato');
-
+var fs = require('fs');
  
+var express = require('express');
 
 const uri = "mongodb+srv://abhi:abhi1610@cluster123-2yy3u.mongodb.net/test"
 
-mongoose.connect(uri, function(err, client) {
+/*mongoose.connect(uri, function(err, client) {
 
     if(err) {
 
@@ -22,7 +23,7 @@ else
 
     //client.close();
 
-});
+});*/
 
  
 
@@ -52,4 +53,41 @@ else
 
         }
 
-    }); */
+    });  */
+
+
+
+var obj = JSON.parse(fs.readFileSync('sample.txt'));
+
+console.log(obj.location.title) ;
+
+//console.log(obj.nearby_restaurants);
+
+var rest = obj.nearby_restaurants
+
+for (var i = 0; i < rest.length; ++i) {
+
+
+
+    console.log("Emp ID: "+rest[i].restaurant.name);
+    
+//console.log(rest[i].restaurant);
+  }
+
+
+  var app = express();
+
+  app.get('/resturants', function (req, res) {
+    
+//console.log("Emp ID: "+rest[i].restaurant.name);
+        res.send(rest);
+        
+    //console.log(rest[i].restaurant);
+      
+    
+    
+  });
+  app.listen(3000, function () {
+    console.log('Example app listening on port 3000!');
+  });
+  

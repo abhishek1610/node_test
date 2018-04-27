@@ -2,13 +2,15 @@
   "name": "sample",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
     "mongodb": "^3.0.7",
     "mongoose": "^5.0.16",
     "zomato": "^1.1.0"
