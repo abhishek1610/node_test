@@ -7,7 +7,7 @@ import { ResturantService } from '../resturant-list/resturant.service';
   template: `
   <ul>
   <li *ngFor="let resultArray of people">
-   {{person.name}}
+   {{people.name}}
   </li>
 </ul>
 `,
@@ -16,21 +16,29 @@ import { ResturantService } from '../resturant-list/resturant.service';
 export class ResturantListComponent implements OnInit  {
 
   private peopleService : ResturantService ;
-  people: Resturant[] = [ ]
+  people: Resturant[] = [ ];
     
   constructor( peopleService: ResturantService) {
+    this.peopleService = peopleService;
+    
     }
 
-    getPosts(): void {
+   
+    resultArray = [ {name: 'Luke Skywalker'},
+       {name: 'Darth Vader'},
+       {name: 'Han Solo'} ]
+   
+  /*  getPosts(): void {
       this.peopleService.getAll()
           .subscribe(
               resultArray => this.people = resultArray,
               error => console.log("Error :: " + error)
           )
-  }
+  } */
 
 
   ngOnInit() { 
+    
 }
  
 
