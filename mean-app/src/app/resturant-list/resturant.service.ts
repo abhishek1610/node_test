@@ -9,24 +9,24 @@ export class ResturantService {
 
 
 
- getAll() : Resturant[]  {
+ /*getAll() : Resturant[]  {
    return [ {name: 'Luke Skywalker'},
     {name: 'Darth Vader'},
     {name: 'Han Solo'} ]
-}; 
+}; */
 
 private baseUrl: string = 'http://localhost:3000/resturants';
   constructor(private http : Http){
   }
 
- /* getAll(): Observable<Resturant[]>{
+ getAll(): Observable<Resturant[]>{
     let people$ = this.http
       .get(this.baseUrl)
       .map((response: Response) => {
         return <Resturant[]>response.json();
     });
     return people$;
-  }*/
+ }
  
 
      

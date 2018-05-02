@@ -9,6 +9,7 @@ import { ResturantListComponent } from './resturant-list/resturant-list.componen
 import { AppComponent } from './app.component';
 import { MapsComponent } from './maps/maps.component';
 import { AgmCoreModule } from '@agm/core';
+import { ResturantService } from './resturant-list/resturant.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { AgmCoreModule } from '@agm/core';
       apiKey: 'AIzaSyDM-oi8L0mSTfAM26PvjButvGQg9KHTH88'
     })
   ],
-  providers: [],
+  providers: [ResturantService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

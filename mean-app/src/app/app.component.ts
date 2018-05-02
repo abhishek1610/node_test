@@ -10,4 +10,5 @@ import { ResturantService } from './resturant-list/resturant.service';
 })
 export class AppComponent {
   title = 'app works! great';
+  
 }
