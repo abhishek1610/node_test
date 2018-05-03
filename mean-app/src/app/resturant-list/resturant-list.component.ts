@@ -13,7 +13,8 @@ import { ResturantService } from '../resturant-list/resturant.service';
 `,
   styleUrls: ['./resturant-list.component.css']
 })
-export class ResturantListComponent implements OnInit  {
+export
+ class ResturantListComponent implements OnInit  {
 
   private peopleService : ResturantService ;
   people : Resturant [ ];
