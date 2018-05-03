@@ -60,23 +60,29 @@ else
 
 var obj = JSON.parse(fs.readFileSync('sample.txt'));
 
-console.log(obj.location.title) ;
+//console.log(obj.location.title) ;
 
-console.log(obj.nearby_restaurants);
+//console.log(obj.nearby_restaurants);
 
 var rest = obj.nearby_restaurants
 let eventsres = [];
+
+let myMap = new Map()
 
 for (var i = 0; i < rest.length; ++i) {
 
 
 
-    console.log("Emp ID: "+rest[i].restaurant.name);
-    eventsres.push(rest[i].restaurant.name)
-//console.log(rest[i].restaurant);
+   // console.log("Emp ID: "+rest[i].restaurant.name);
+    eventsres.push('{name :' + rest[i].restaurant.name)
+    myMap.set ({'name': rest[i].restaurant.name, 'id' : rest[i].restaurant.id}  )
+    //console.log(rest[i].restaurant);
   }
 
-  
+  var test = JSON.stringify(myMap)
+ // console.log(test)
+
+
   var app = express();
 
   app.use(express.static(__dirname));
@@ -84,7 +90,7 @@ for (var i = 0; i < rest.length; ++i) {
   res.sendFile(path.join(__dirname,'/dist/index.html'))
 });
 
-
+//sffs djfjf
 
   app.get('/resturants', function (req, res) {
     
