@@ -67,7 +67,7 @@ var obj = JSON.parse(fs.readFileSync('sample.txt'));
 var rest = obj.nearby_restaurants
 let eventsres = [];
 
-let myMap = new Map()
+var myMap = new Map()
 
 for (var i = 0; i < rest.length; ++i) {
 
@@ -75,14 +75,24 @@ for (var i = 0; i < rest.length; ++i) {
 
    // console.log("Emp ID: "+rest[i].restaurant.name);
     eventsres.push('{name :' + rest[i].restaurant.name)
-    myMap.set ({'name': rest[i].restaurant.name, 'id' : rest[i].restaurant.id}  )
-    //console.log(rest[i].restaurant);
+    myMap.set ('name', rest[i].restaurant.name).set( 'id' , rest[i].restaurant.id)
+    test = strMapToObj(myMap) ;
+   // console.log(myMap);
+   eventsres.push(test)
   }
 
-  var test = JSON.stringify(myMap)
- // console.log(test)
+  var test = JSON.stringify(eventsres)
+  console.log(test)
 
-
+  function strMapToObj(strMap) {
+    let obj = Object.create(null);
+    for (let [k,v] of strMap) {
+        // We don’t escape the key '__proto__'
+        // which can cause problems on older engines
+        obj[k] = v;
+    }
+    return obj;
+}
   var app = express();
 
   app.use(express.static(__dirname));
