@@ -74,8 +74,9 @@ for (var i = 0; i < rest.length; ++i) {
 
 
    // console.log("Emp ID: "+rest[i].restaurant.name);
-    eventsres.push('{name :' + rest[i].restaurant.name)
-    myMap.set ('name', rest[i].restaurant.name).set( 'id' , rest[i].restaurant.id)
+    //eventsres.push('{name :' + rest[i].restaurant.name)
+    myMap.set ('name', rest[i].restaurant.name).set( 'id' , rest[i].restaurant.id).
+    set( 'lat' , rest[i].restaurant.location.latitude).set( 'log' , rest[i].restaurant.location.longitude)
     test = strMapToObj(myMap) ;
    // console.log(myMap);
    eventsres.push(test)
@@ -94,7 +95,7 @@ for (var i = 0; i < rest.length; ++i) {
     return obj;
 }
   var app = express();
-
+  app.use(cors());
   app.use(express.static(__dirname));
  app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname,'/dist/index.html'))
@@ -105,7 +106,7 @@ for (var i = 0; i < rest.length; ++i) {
   app.get('/resturants', function (req, res) {
     
 //console.log("Emp ID: "+rest[i].restaurant.name);
-        res.send(eventsres)
+        res.send(test)
         
     //console.log(rest[i].restaurant);
       

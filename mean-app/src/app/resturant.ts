@@ -1,3 +1,6 @@
 export interface Resturant {
-    name :String
+    name :String,
+    id : Number,
+    lat : Number,
+    log :Number
 }

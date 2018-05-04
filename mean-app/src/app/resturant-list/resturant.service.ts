@@ -40,7 +40,7 @@ private baseUrl: string = 'http://localhost:3000/resturants';
  
  function toPerson(r:any): Resturant{
    let person = <Resturant>({
-     name: r.name,
+     name: r.name
      
    });
    console.log('Parsed person:', person);

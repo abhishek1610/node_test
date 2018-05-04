@@ -7,7 +7,7 @@ import { ResturantService } from '../resturant-list/resturant.service';
   template: `
   <ul>
   <li *ngFor="let peoples of people">
-   {{peoples}}
+   {{peoples.name}} {{peoples.id}} {{peoples.lat}} {{peoples.log}}
   </li>
 </ul>
 `,
@@ -32,8 +32,9 @@ export
  getPosts(): void {
       this.peopleService.getAll()
           .subscribe(
-              resultArray => {this.people = resultArray,
-                console.log (this.people ) } ,
+              resultArray => {this.people = resultArray
+              //  console.log (this.people ) 
+            } ,
               error => console.log("Error :: " + error)
           )
   } 

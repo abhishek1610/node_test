@@ -1,12 +1,12 @@
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng">
-    <agm-info-window [ngStyle]="{ 'display': 'block' }" [isOpen]="infoWindowOpen">
-      <div>
-        <span [ngStyle]="{ 'fontWeight': 'bold', 'display': 'block' }"></span>
-       
-      </div>
-    </agm-info-window>
+<agm-map [latitude]="lat" [longitude]="lng"
+>
 
-  </agm-marker>
+   
 
+
+     <agm-marker *ngFor="let marker of markers;"  [latitude]="marker.lat" [longitude]="marker.log">
+
+
+     </agm-marker>
+    
 </agm-map>
