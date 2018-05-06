@@ -33,7 +33,7 @@ export
       this.peopleService.getAll()
           .subscribe(
               resultArray => {this.people = resultArray
-              //  console.log (this.people ) 
+               console.log (this.people ) 
             } ,
               error => console.log("Error :: " + error)
           )
