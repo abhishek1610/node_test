@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resturant } from '../resturant';
-import { Http, Response } from '@angular/http';
+import { Http, Response,Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -16,6 +16,7 @@ export class ResturantService {
 }; */
 
 private baseUrl: string = 'http://localhost:3000/resturants';
+private baseUrl1: string = 'http://localhost:3000/loc';
   constructor(private http : Http){
   }
 
@@ -28,7 +29,22 @@ private baseUrl: string = 'http://localhost:3000/resturants';
     return people$;
  }
  
+ getAll_upd(lat: string, log: string): Observable<Resturant[]>{
+  let myHeaders = new Headers();
+	myHeaders.set('Content-Type', 'application/json');   
+	let myParams = new URLSearchParams();
+	myParams.set('lat', lat);
+	myParams.set('log', log);		
+        let options = new RequestOptions({ headers: myHeaders, params: myParams });
+  let people$ = this.http
+    .get(this.baseUrl1+'/'+lat+'/'+log)
+    .map((response: Response) => {
+      console.log(response.json()) ;
+      return <Resturant[]>response.json();
 
+  });
+  return people$;
+}
      
   }
   

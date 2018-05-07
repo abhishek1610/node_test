@@ -97,7 +97,7 @@ public latitude: number;
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.formatted_address = place.formatted_address;
-          //this.zoom = 14;
+          this.zoom = 14;
           console.log(this.formatted_address);
           console.log(this.latitude);
           console.log(this.longitude);
@@ -114,7 +114,7 @@ public latitude: number;
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        this.zoom = 14;
+        this.zoom = 12;
       });
     }
   }
