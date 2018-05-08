@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter, Output, OnChanges } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 import { ResturantService } from '../resturant-list/resturant.service';
 import { Resturant } from '../resturant';
@@ -16,10 +16,13 @@ import {} from '@types/googlemaps';
 export class MapsComponent implements OnInit {
   private peopleService : ResturantService ;
   markers : Resturant [];
+  markers2 : Resturant [];
   marks : marker[];
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
+
+  @Output() locchanges = new EventEmitter();
   markers1: marker1[] = [
 	  {
 		  lat: 28.6003150449,
@@ -51,6 +54,20 @@ export class MapsComponent implements OnInit {
           )
   } 
 
+
+  getPosts1(): void { 
+    var  lat : string;
+    var log :string;
+    lat = this.latitude.toString();
+    log = this.longitude.toString();
+    this.peopleService.getAll_upd(lat,log)
+        .subscribe(
+            resultArray => {this.markers2 = resultArray,
+              console.log (this.markers2 ) }
+
+        )
+} 
+
 pushMarkers() : void{
   this.markers.forEach(element => {
     this.marks.push({
@@ -62,6 +79,17 @@ pushMarkers() : void{
     });
   }
   
+  pushMarkers1() : void{
+    this.markers2.forEach(element => {
+      this.marks.push({
+      lat:Number(element.lat),
+      lng:Number (element.log),
+        draggable:false
+      })
+      console.log("pushed"+element.lat+","+element.log);
+      });
+    }
+
   private convertStringToNumber(value: string): number {
     return +value;
 }
@@ -74,7 +102,8 @@ public latitude: number;
   public formatted_address: string;
 
   ngOnInit() {
-     this.getPosts();
+     //this.getPosts1();
+     //pushMarkers1() ;
      this.searchControl = new FormControl();
 
     //set current position
@@ -102,12 +131,24 @@ public latitude: number;
           console.log(this.latitude);
           console.log(this.longitude);
           console.log(this.zoom);
+
+          
           //set latitude, longitude and zoom
           
         });
       });
     });
+
+    
   }
+  passloc() {
+    console.log(this.latitude);
+          console.log(this.longitude);
+    this.locchanges.emit ({lat : this.latitude,log :this.longitude })
+    this.getPosts1();
+
+  }
+
 
   private setCurrentPosition() {
     if ("geolocation" in navigator) {

@@ -95,12 +95,12 @@ for (var i = 0; i < rest.length; ++i) {
 
 
   app.get('/loc/:lat/:log', function (req, res) {
-    var num = req.params.lat;
-    var num = req.params.log;
+    var lat1 = req.params.lat;
+    var log1 = req.params.log;
     var out;
     client.getGeocode({
-      lat:"28.613939", //latitude
-      lon:"77.209021" //longitude
+      lat:lat1, //latitude
+      lon:log1 //longitude
       }, function(err, result){
           if(!err){
              out = result;

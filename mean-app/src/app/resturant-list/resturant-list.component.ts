@@ -18,19 +18,21 @@ import { NgForm } from '@angular/forms';
 	 </div>	  
   </form>
   </div>
-  <div *ngIf="bookByIdForm.submitted">
+  <div >
   <ul>
   <li *ngFor="let peoples of people1">
    {{peoples.name}} {{peoples.id}} {{peoples.lat}} {{peoples.log}}
   </li>
 </ul>
 </div>
+<app-maps  (locchanges)='changeinloc($event)'></app-maps>
 `,
   styleUrls: ['./resturant-list.component.css']
 })
 export
  class ResturantListComponent implements OnInit  {
-
+  //@Input() result:string="";  
+  
   private peopleService : ResturantService ;
   people  : Resturant [ ];
   people1 : Resturant [ ];
@@ -66,12 +68,21 @@ this.people = null;
             data => {  
     if(data.length > 0) {
         this.people1 = data; 
+        console.log (this.people1 )
     } else {
   this.dataAvailableAfterFilter= false; 
     }	
 },
             error =>  this.errorMessage = <any>error
 );    
+}
+lat : string;
+log :string;
+changeinloc(p) {
+  this.lat = p.lat
+  this.log =  p.log;
+  console.log('in parent'+  this.lat)
+  this.getPosts_upd(this.lat,this.log)
 }
 
   ngOnInit() { 

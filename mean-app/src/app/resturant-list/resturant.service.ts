@@ -34,12 +34,13 @@ private baseUrl1: string = 'http://localhost:3000/loc';
 	myHeaders.set('Content-Type', 'application/json');   
 	let myParams = new URLSearchParams();
 	myParams.set('lat', lat);
-	myParams.set('log', log);		
+  myParams.set('log', log);		
+  console.log (lat +'   ' + log)
         let options = new RequestOptions({ headers: myHeaders, params: myParams });
   let people$ = this.http
     .get(this.baseUrl1+'/'+lat+'/'+log)
     .map((response: Response) => {
-      console.log(response.json()) ;
+      //console.log(response.json()) ;
       return <Resturant[]>response.json();
 
   });
